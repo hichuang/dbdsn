@@ -1,9 +1,9 @@
 -- QUERY 1
 drop table if exists mv_q01;
 create table mv_q01
-	select l_returnflag as mv_returnflag,
+	select l_shipdate as mv_shipdate,
+		   l_returnflag as mv_returnflag,
 		   l_linestatus as mv_linestatus,
-		   l_shipdate as mv_shipdate,
 		   sum(l_quantity) as mv_sum_qty,
 		   sum(l_extendedprice) as mv_sum_base_price,
 		   sum(l_extendedprice * (1-l_discount)) as mv_sum_disc_price,

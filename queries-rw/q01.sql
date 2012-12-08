@@ -1,7 +1,7 @@
 -- QUERY 1
 select
-	mv_returnflag,
-	mv_linestatus,
+	mv_returnflag as l_returnflag,
+	mv_linestatus as l_linestatus,
 	sum(mv_sum_qty) as sum_qty,
 	sum(mv_sum_base_price) as sum_base_price,
 	sum(mv_sum_disc_price) as sum_disc_price,

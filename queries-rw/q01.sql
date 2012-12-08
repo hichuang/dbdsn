@@ -1,5 +1,4 @@
 -- QUERY 1
-EXPLAIN
 select
 	l_returnflag,
 	l_linestatus,

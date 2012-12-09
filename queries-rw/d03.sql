@@ -6,7 +6,7 @@ create table mv_q03
 		sum(l_extendedprice * (1 - l_discount)) as mv_revenue,
 		o_orderdate as mv_orderate,
 		o_shippriority as mv_shippriority,
-		o_shipdate as mv_shipdate,
+		l_shipdate as mv_shipdate,
 		c_mktsegment as mv_mktsegment
 	from
 		customer,

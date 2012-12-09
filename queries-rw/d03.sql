@@ -24,6 +24,6 @@ create table mv_q03
 	order by
 		mv_mktsegment,
 		mv_orderdate,
-		mv_shipdate,
+		mv_shipdate;
 
 -- create index mktsegment on mv_q03( mv_mktsegment );

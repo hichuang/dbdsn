@@ -14,4 +14,4 @@ create table mv_q03
 		lineitem
 	where
 		c_custkey = o_custkey
-		and l_orderkey = o_orderkey
+		and l_orderkey = o_orderkey;

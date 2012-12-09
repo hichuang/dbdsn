@@ -8,7 +8,7 @@ create table mv_q04
 	from
 		orders
 	where
-		and exists (
+		exists (
 			select
 				*
 			from

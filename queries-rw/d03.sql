@@ -23,5 +23,5 @@ create table mv_q03
 		l_shipdate,
 		c_mktsegment
 	order by
-		revenue desc,
+		mv_revenue desc,
 		o_orderdate;

@@ -1,5 +1,5 @@
 -- QUERY 4
-drop table mv_q04 if exists;
+drop table if exists mv_q04;
 create table mv_q04
 	select
 		o_orderpriority as mv_orderpriority,

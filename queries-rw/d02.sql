@@ -1,4 +1,5 @@
 -- QUERY 2
+explain
 select
 	s_acctbal,
 	s_name,

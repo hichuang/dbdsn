@@ -5,7 +5,7 @@ select
 from
 	mv_q05
 where
-	and mv_rname = 'ASIA'
+	mv_rname = 'ASIA'
 	and mv_orderdate >= date '1994-01-01'
 	and mv_orderdate < date '1994-01-01' + interval '1' year
 group by

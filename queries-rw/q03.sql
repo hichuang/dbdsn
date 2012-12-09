@@ -1,19 +1,19 @@
 -- QUERY 3
 select
-	l_orderkey,
+	mv_orderkey as l_orderkey,
 	sum(mv_revenue) as revenue,
-	o_orderdate,
-	o_shippriority
+	mv_orderdate as o_orderdate,
+	mv_shippriority as o_shippriority
 from
 	mv_q03
 where
-	c_mktsegment = 'BUILDING'
-	and o_orderdate < date '1995-03-15'
-	and l_shipdate > date '1995-03-15'
+	mv_mktsegment = 'BUILDING'
+	and mv_orderdate < date '1995-03-15'
+	and mv_shipdate > date '1995-03-15'
 group by
-	l_orderkey,
-	o_orderdate,
-	o_shippriority
+	mv_orderkey,
+	mv_orderdate,
+	mv_shippriority
 order by
 	revenue desc,
-	o_orderdate;
+	mv_orderdate;

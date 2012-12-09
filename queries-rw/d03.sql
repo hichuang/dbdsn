@@ -21,6 +21,10 @@ create table mv_q03
 		o_shippriority,
 		o_orderdate,
 		l_shipdate,
-		c_mktsegment;
+		c_mktsegment
+	order by
+		mv_mktsegment,
+		mv_orderdate,
+		mv_shipdate,
 
 --create index mktsegment on mv_q03( mv_mktsegment );

@@ -4,7 +4,7 @@ create table mv_q03
 	select
 		l_orderkey as mv_orderkey,
 		sum(l_extendedprice * (1 - l_discount)) as mv_revenue,
-		o_orderdate as mv_orderate,
+		o_orderdate as mv_orderdate,
 		o_shippriority as mv_shippriority,
 		l_shipdate as mv_shipdate,
 		c_mktsegment as mv_mktsegment
@@ -21,7 +21,4 @@ create table mv_q03
 		o_shippriority,
 		o_orderdate,
 		l_shipdate,
-		c_mktsegment
-	order by
-		mv_revenue desc,
-		o_orderdate;
+		c_mktsegment;

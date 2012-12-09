@@ -7,7 +7,7 @@ create table mv_q03
 		o_orderdate,
 		o_shippriority,
 		l_shipdate,
-		c_mktsegment,
+		c_mktsegment
 	from
 		customer,
 		orders,

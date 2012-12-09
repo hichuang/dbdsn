@@ -16,12 +16,11 @@ create table mv_q03
 		c_custkey = o_custkey
 		and l_orderkey = o_orderkey
 	group by
+		c_mktsegment,
 		l_orderkey,
 		o_orderdate,
 		o_shippriority,
-		o_orderdate,
-		l_shipdate,
-		c_mktsegment
+		l_shipdate
 	order by
 		mv_mktsegment,
 		mv_orderdate,

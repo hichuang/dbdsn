@@ -22,3 +22,5 @@ create table mv_q03
 		o_orderdate,
 		l_shipdate,
 		c_mktsegment;
+
+create index mktsegment on mv_q03( mv_mktsegment );

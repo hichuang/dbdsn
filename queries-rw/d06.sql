@@ -9,6 +9,10 @@ create table mv_q06
 	from
 		lineitem
 	group by
-		l_shipdate,
+		l_quantity,
 		l_discount,
-		l_quantity;
+		l_shipdate
+	order by
+		mv_qty,
+		mv_disc,
+		l_shipdate;

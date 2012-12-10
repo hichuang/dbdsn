@@ -6,7 +6,7 @@ create table mv_q07
 		n2.n_name as mv_cust_nation,
 		l_shipdate as mv_shipdate,
 		extract(year from l_shipdate) as mv_l_year,
-		l_extendedprice * (1 - l_discount) as mv_volume
+		sum(l_extendedprice * (1 - l_discount)) as mv_volume
 	from
 		supplier,
 		lineitem,
@@ -23,4 +23,7 @@ create table mv_q07
 	group by
 		n1.n_name,
 		n2.n_name,
-		l_shipdate;
+		l_shipdate
+	order by
+		mv_supp_nation,
+		mv_cust_nation;

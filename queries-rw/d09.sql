@@ -11,7 +11,7 @@ create table mv_q09
 		supplier,
 		lineitem,
 		partsupp,
-		(select o_orderkey, extract(year from o_orderdate) as o_year from orders),
+		(select o_orderkey, extract(year from o_orderdate) as o_year from orders) as torders,
 		nation
 	where
 		s_suppkey = l_suppkey

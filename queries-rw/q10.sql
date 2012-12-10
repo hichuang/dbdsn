@@ -1,26 +1,32 @@
 -- QUERY 10
 select
-	mv_custkey as c_custkey,
-	mv_cname as c_name,
-	sum(mv_revenue) as revenue,
-	mv_acctbal as c_acctbal,
-	mv_nname as n_name,
-	mv_addr as c_address,
-	mv_phone as c_phone,
-	mv_comment as c_comment
+	c_custkey,
+	c_name,
+	sum(l_extendedprice * (1 - l_discount)) as revenue,
+	c_acctbal,
+	n_name,
+	c_address,
+	c_phone,
+	c_comment
 from
-	mv_q10
+	mv_q10_l,
+	customer,
+	orders,
+	nation
 where
-	mv_returnflag = 'R'
-	and mv_orderdate >= date '1993-10-01'
-	and mv_orderdate < date '1993-10-01' + interval '3' month
+	l_returnflag = 'R'
+	and c_custkey = o_custkey
+	and l_orderkey = o_orderkey
+	and o_orderdate >= date '1993-10-01'
+	and o_orderdate < date '1993-10-01' + interval '3' month
+	and c_nationkey = n_nationkey
 group by
-	mv_custkey,
-	mv_cname,
-	mv_acctbal,
-	mv_phone,
-	mv_nname,
-	mv_addr,
-	mv_comment
+	c_custkey,
+	c_name,
+	c_acctbal,
+	c_phone,
+	n_name,
+	c_address,
+	c_comment
 order by
 	revenue desc;

@@ -3,7 +3,7 @@ select
 	mv_custkey as c_custkey,
 	mv_cname as c_name,
 	sum(mv_revenue) as revenue,
-	mv_accbal as c_acctbal,
+	mv_acctbal as c_acctbal,
 	mv_nname as n_name,
 	mv_addr as c_address,
 	mv_phone as c_phone,

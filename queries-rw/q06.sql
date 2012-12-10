@@ -1,10 +1,10 @@
 -- QUERY 6
 select
-	sum(l_extendedprice * l_discount) as revenue
+	sum(mv_revenue) as revenue
 from
-	lineitem
+	mv_q06
 where
-	l_shipdate >= date '1994-01-01'
-	and l_shipdate < date '1994-01-01' + interval '1' year
-	and l_discount between .06 - 0.01 and .06 + 0.01
-	and l_quantity < 24;
+	mv_shipdate >= date '1994-01-01'
+	and mv_shipdate < date '1994-01-01' + interval '1' year
+	and mv_discount between .06 - 0.01 and .06 + 0.01
+	and mv_quantity < 24;

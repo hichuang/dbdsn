@@ -16,7 +16,7 @@ where
 	and mv_returnflag = 'R'
 group by
 	mv_custkey,
-	mv_name,
+	mv_cname,
 	mv_acctbal,
 	mv_phone,
 	mv_nname,

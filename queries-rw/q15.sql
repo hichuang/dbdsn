@@ -14,7 +14,7 @@ from
 	 	mv_q15
 	 where
 	 	mv_shipdate >= date '1996-01-01'
-		and l_shipdate < date '1996-01-01' + interval '3' month
+		and mv_shipdate < date '1996-01-01' + interval '3' month
 	 group by
 	 	mv_suppkey
 	 order by

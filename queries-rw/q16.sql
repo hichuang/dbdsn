@@ -9,7 +9,7 @@ from
 where
 	mv_brand <> 'Brand#45'
 	and mv_type not like 'MEDIUM POLISHED%'
-	and mv_size in (3, 9, 14, 19, 23, 36, 45, 49)
+	and mv_size in (49, 14, 23, 45, 19, 3, 36, 9)
 	and mv_comment not like '%Customer%Complaints%'
 group by
 	p_brand,

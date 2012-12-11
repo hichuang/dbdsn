@@ -11,7 +11,7 @@ group by
 		sum(mv_value) > (
 			select mv_value * 0001000000
 			from mv_q11
-			where mv_name = 'GERMANY'
+			where mv_nname = 'GERMANY'
 		)
 order by
 	value desc;

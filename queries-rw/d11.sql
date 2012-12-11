@@ -14,4 +14,8 @@ create table mv_q11
 		and s_nationkey = n_nationkey
 	group by
 		ps_partkey,
-		n_name;
+		n_name
+	order by
+		mv_nname;
+
+create index nationname on mv_q11( mv_nname );

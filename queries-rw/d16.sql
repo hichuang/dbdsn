@@ -9,7 +9,8 @@ create table mv_q16
 		ps_suppkey as mv_suppkey
 	from
 		partsupp,
-		part
+		part,
+		supplier
 	where
 		p_partkey = ps_partkey
 		and ps_suppkey = s_suppkey

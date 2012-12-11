@@ -1,28 +1,17 @@
 -- QUERY 11
 select
-	ps_partkey,
-	sum(ps_supplycost * ps_availqty) as value
+	mv_partkey as ps_partkey,
+	sum(mv_value) as value
 from
-	partsupp,
-	supplier,
-	nation
+	mv_q11
 where
-	ps_suppkey = s_suppkey
-	and s_nationkey = n_nationkey
-	and n_name = 'GERMANY'
+	mv_nname = 'GERMANY'
 group by
-	ps_partkey having
-		sum(ps_supplycost * ps_availqty) > (
-			select
-				sum(ps_supplycost * ps_availqty) * 0.0001000000
-			from
-				partsupp,
-				supplier,
-				nation
-			where
-				ps_suppkey = s_suppkey
-				and s_nationkey = n_nationkey
-				and n_name = 'GERMANY'
+	mv_partkey having
+		sum(mv_value) > (
+			select mv_value * 0001000000
+			from mv_q11
+			where mv_name = 'GERMANY'
 		)
 order by
 	value desc;

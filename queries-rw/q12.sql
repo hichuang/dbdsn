@@ -1,10 +1,10 @@
 -- QUERY 12
 select
 	mv_shipmode as l_shipmode,
-	case when mv_orderprior in ('1-URGENT', '2-HIGH') 
-		then sum(mv_linecount) end 'high_line_count',
-	case when mv_orderprior not in ('1-URGENT', '2-HIGH') 
-		then sum(mv_linecount) end 'low_line_count'
+	sum(case when mv_orderprior in ('1-URGENT', '2-HIGH') 
+		then mv_linecount else 0 end) as high_line_count,
+	sum(case when mv_orderprior not in ('1-URGENT', '2-HIGH') 
+		then mv_linecount else 0 end) as low_line_count
 from
 	mv_q12
 where

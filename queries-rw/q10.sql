@@ -9,16 +9,16 @@ select
 	c_phone,
 	c_comment
 from
-	mv_q10_l,
 	customer,
 	orders,
+	lineitem,
 	nation
 where
-	l_returnflag = 'R'
-	and c_custkey = o_custkey
+	c_custkey = o_custkey
 	and l_orderkey = o_orderkey
 	and o_orderdate >= date '1993-10-01'
 	and o_orderdate < date '1993-10-01' + interval '3' month
+	and l_returnflag = 'R'
 	and c_nationkey = n_nationkey
 group by
 	c_custkey,

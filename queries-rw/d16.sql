@@ -19,4 +19,8 @@ create table mv_q16
 		p_type,
 		p_size,
 		s_comment,
-		ps_suppkey;
+		ps_suppkey
+	order by
+		mv_brand,
+		mv_type,
+		mv_size;

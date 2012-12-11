@@ -9,7 +9,7 @@ where
 group by
 	mv_partkey having
 		sum(mv_value) > (
-			select mv_value * 0001000000
+			select sum(mv_value) * 0001000000
 			from mv_q11
 			where mv_nname = 'GERMANY'
 		)

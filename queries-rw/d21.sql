@@ -14,7 +14,6 @@ create table mv_q21
 	where
 		s_suppkey = l1.l_suppkey
 		and o_orderkey = l1.l_orderkey
-		and o_orderstatus = 'F'
 		and l1.l_receiptdate > l1.l_commitdate
 		and exists (
 			select
@@ -36,7 +35,6 @@ create table mv_q21
 				and l3.l_receiptdate > l3.l_commitdate
 		)
 		and s_nationkey = n_nationkey
-		and n_name = 'SAUDI ARABIA'
 	group by
 		o_orderstatus,
 		n_name,

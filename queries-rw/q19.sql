@@ -2,12 +2,12 @@
 select
 	sum(l_extendedprice* (1 - l_discount)) as revenue
 from
-	lineitem,
-	part
+	lineitem inner join 
+	(select p_brand, p_container, p_size, p_partkey from part where p_brand in ('Brand#12', 'Brand#23', 'Brand#34') and p_size between 1 and 15)
+	 	    on p_partkey = l_partkey use index lpkIndex
 where
 	(
-		p_partkey = l_partkey
-		and p_brand = 'Brand#12'
+		p_brand = 'Brand#12'
 		and p_container in ('SM CASE', 'SM BOX', 'SM PACK', 'SM PKG')
 		and l_quantity >= 1 and l_quantity <= 1 + 10
 		and p_size between 1 and 5
@@ -16,8 +16,7 @@ where
 	)
 	or
 	(
-		p_partkey = l_partkey
-		and p_brand = 'Brand#23'
+		p_brand = 'Brand#23'
 		and p_container in ('MED BAG', 'MED BOX', 'MED PKG', 'MED PACK')
 		and l_quantity >= 10 and l_quantity <= 10 + 10
 		and p_size between 1 and 10
@@ -26,8 +25,7 @@ where
 	)
 	or
 	(
-		p_partkey = l_partkey
-		and p_brand = 'Brand#34'
+		p_brand = 'Brand#34'
 		and p_container in ('LG CASE', 'LG BOX', 'LG PACK', 'LG PKG')
 		and l_quantity >= 20 and l_quantity <= 20 + 10
 		and p_size between 1 and 15

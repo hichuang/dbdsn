@@ -18,7 +18,7 @@ from
 	 group by
 	 	mv_suppkey
 	 order by
-	 	total_revenue asc
+	 	total_revenue desc
 	 limit 1) as revenue0
 where
 	s_suppkey = mv_suppkey

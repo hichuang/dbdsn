@@ -3,7 +3,7 @@ select
 	sum(l_extendedprice* (1 - l_discount)) as revenue
 from
 	lineitem inner join 
-	(select p_brand, p_container, p_size, p_partkey from part where p_brand in ('Brand#12', 'Brand#23', 'Brand#34') and p_size between 1 and 15)
+	(select p_brand, p_container, p_size, p_partkey from part where p_brand in ('Brand#12', 'Brand#23', 'Brand#34') and p_size between 1 and 15) as p
 	 	    on p_partkey = l_partkey use index lpkIndex
 where
 	(

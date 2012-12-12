@@ -13,3 +13,5 @@ create table mv_q14
 	group by
 		p_type,
 		l_shipdate;
+
+alter table mv_q14 add primary key (mv_type, mv_shipdate);

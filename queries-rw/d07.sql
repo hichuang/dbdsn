@@ -28,5 +28,4 @@ create table mv_q07
 		mv_supp_nation,
 		mv_cust_nation;
 
-create index supp_nation on mv_q07( mv_supp_nation );
-create index cust_nation on mv_q07( mv_cust_nation );
+alter table mv_q07 add primary key (mv_supp_nation, mv_cust_nation, mv_shipdate);

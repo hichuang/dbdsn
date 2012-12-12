@@ -20,3 +20,5 @@ create table mv_q16
 		p_size,
 		s_comment,
 		ps_suppkey;
+
+alter table mv_q16 add primary key (mv_brand, mv_type, mv_size, mv_suppkey);

@@ -10,3 +10,5 @@ create table mv_q15
 	group by
 		l_suppkey,
 		l_shipdate;
+
+alter table mv_q15 add primary key (mv_suppkey, mv_shipdate);

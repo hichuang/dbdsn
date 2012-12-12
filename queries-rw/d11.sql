@@ -18,4 +18,4 @@ create table mv_q11
 	order by
 		mv_nname;
 
-create index nationname on mv_q11( mv_nname );
+alter table mv_q11 add primary key (mv_nname, mv_partkey);

@@ -21,3 +21,5 @@ create table mv_q12
 		mv_shipmode,
 		mv_orderprior,
 		mv_recdate;
+
+alter table mv_q12 add primary key (mv_shipmode, mv_orderprior, mv_recdate, mv_linecount);

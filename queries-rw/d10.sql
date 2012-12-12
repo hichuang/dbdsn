@@ -31,3 +31,5 @@ create table mv_q10
 		n_name,
 		c_address,
 		c_comment;
+
+alter table mv_q10 add primary key (mv_custkey, mv_returnflag, mv_orderdate);

@@ -24,3 +24,5 @@ create table mv_q09
 		n_name,
 		o_year,
 		p_name;
+
+alter table mv_q09 add primary key (mv_pname, mv_nation, mv_o_year);

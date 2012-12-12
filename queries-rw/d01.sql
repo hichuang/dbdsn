@@ -1,4 +1,7 @@
 -- QUERY 1
+-- attempt 1
+-- create index shipdate on lineitem( l_shipdate );
+
 drop table if exists mv_q01;
 create table mv_q01
 	select l_shipdate as mv_shipdate,

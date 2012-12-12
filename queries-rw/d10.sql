@@ -22,7 +22,7 @@ create table mv_q10
 		and l_orderkey = o_orderkey
 		and c_nationkey = n_nationkey
 	group by
-		l_returnflag.
+		l_returnflag,
 		o_orderdate,
 		c_custkey,
 		c_name,

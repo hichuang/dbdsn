@@ -1,5 +1,27 @@
 -- The SQL to create your design will go in this file
 
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
+-- QUERY 6
+drop table if exists mv_q06;
+create table mv_q06
+	select
+		sum(l_extendedprice * l_discount) as mv_revenue,
+		l_shipdate as mv_shipdate,
+		l_discount as mv_disc,
+		l_quantity as mv_qty
+	from
+		lineitem
+	group by
+		l_quantity,
+		l_discount,
+		l_shipdate
+	order by
+		mv_qty,
+		mv_disc,
+		l_shipdate;
+
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
+
 -- QUERY 7
 drop table if exists mv_q07;
 create table mv_q07
@@ -30,6 +52,8 @@ create table mv_q07
 		mv_supp_nation,
 		mv_cust_nation;
 
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
+
 
 -- QUERY 9
 drop table if exists mv_q09;
@@ -58,6 +82,7 @@ create table mv_q09
 		o_year,
 		p_name;
 
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
 
 -- QUERY 11
 drop table if exists mv_q11;
@@ -78,6 +103,8 @@ create table mv_q11
 		n_name
 	order by
 		mv_nname;
+
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
 
 -- QUERY 12
 drop table if exists mv_q12;
@@ -103,6 +130,8 @@ create table mv_q12
 		mv_orderprior,
 		mv_recdate;
 
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
+
 -- QUERY 14
 drop table if exists mv_q14;
 create table mv_q14
@@ -119,6 +148,8 @@ create table mv_q14
 		p_type,
 		l_shipdate;
 
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
+
 -- QUERY 15
 drop table if exists mv_q15;
 create table mv_q15
@@ -131,6 +162,8 @@ create table mv_q15
 	group by
 		l_suppkey,
 		l_shipdate;
+
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
 
 -- QUERY 16
 drop table if exists mv_q16;
@@ -154,6 +187,8 @@ create table mv_q16
 		p_size,
 		s_comment,
 		ps_suppkey;
+
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
 
 -- QUERY 21
 drop table if exists mv_q21;
@@ -196,3 +231,5 @@ create table mv_q21
 		o_orderstatus,
 		n_name,
 		s_name;
+
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;

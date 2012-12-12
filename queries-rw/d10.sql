@@ -1,5 +1,5 @@
 -- QUERY 10
-drop table if exists mv_q10_l;
+drop table if exists mv_q10;
 create table mv_q10
 	select
 		c_custkey as mv_custkey,
@@ -22,12 +22,12 @@ create table mv_q10
 		and l_orderkey = o_orderkey
 		and c_nationkey = n_nationkey
 	group by
+		l_returnflag
+		o_orderdate,
 		c_custkey,
 		c_name,
 		c_acctbal,
 		c_phone,
 		n_name,
 		c_address,
-		c_comment,
-		o_orderdate,
-		l_returnflag
+		c_comment;

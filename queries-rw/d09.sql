@@ -22,7 +22,7 @@ create table mv_q09
 		and s_nationkey = n_nationkey
 	group by
 		n_name,
-		o_year,
+		mv_o_year,
 		p_name;
 
 -- alter table mv_q09 add primary key (mv_pname, mv_nation, mv_o_year);

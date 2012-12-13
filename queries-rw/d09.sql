@@ -4,14 +4,14 @@ create table mv_q09
 	select
 		p_name as mv_pname,
 		n_name as mv_nation,
-		o_year as mv_o_year,
+		extract(year from o_orderdate) as mv_o_year,
 		sum(l_extendedprice * (1 - l_discount) - ps_supplycost * l_quantity) as mv_amount
 	from
 		part,
 		supplier,
 		lineitem,
 		partsupp,
-		(select o_orderkey, extract(year from o_orderdate) as o_year from orders) as torders,
+		orders,
 		nation
 	where
 		s_suppkey = l_suppkey
@@ -25,4 +25,4 @@ create table mv_q09
 		o_year,
 		p_name;
 
-alter table mv_q09 add primary key (mv_pname, mv_nation, mv_o_year);
+-- alter table mv_q09 add primary key (mv_pname, mv_nation, mv_o_year);

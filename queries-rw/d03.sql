@@ -26,4 +26,4 @@ create table mv_q03
 		mv_orderdate,
 		mv_shipdate;
 
--- create index mktsegment on mv_q03( mv_mktsegment );
+alter table mv_q03 add primary key (mv_orderkey, mv_mktsegment, mv_orderdate, mv_shipdate);

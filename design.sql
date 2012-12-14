@@ -32,7 +32,7 @@ insert into mv_q03 (mv_orderkey, mv_revenue, mv_orderdate, mv_shippriority, mv_s
 		l_orderkey,
 		o_orderdate,
 		o_shippriority,
-		l_shipdate
+		l_shipdate;
 
 select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
 

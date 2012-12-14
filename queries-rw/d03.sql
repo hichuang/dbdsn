@@ -1,13 +1,21 @@
 -- QUERY 3
 drop table if exists mv_q03;
-create table mv_q03
+create table mv_q03 ( mv_orderkey INTEGER NOT NULL,
+					  mv_revenue DECIMAL(15,4) NOT NULL,
+					  mv_orderdate DATE NOT NULL,
+					  mv_shipdate DATE NOT NULL,
+					  mv_shippriority INTEGER NOT NULL,
+					  mv_mktsegment CHAR(10) NOT NULL,
+					  primary key (mv_orderkey, mv_mktsegment, mv_orderdate, mv_shipdate) );
+
+insert into mv_q03 (mv_orderkey, mv_revenue, mv_orderdate, mv_shippriority, mv_shipdate, mv_mktsegment)	
 	select
-		l_orderkey as mv_orderkey,
-		sum(l_extendedprice * (1 - l_discount)) as mv_revenue,
-		o_orderdate as mv_orderdate,
-		o_shippriority as mv_shippriority,
-		l_shipdate as mv_shipdate,
-		c_mktsegment as mv_mktsegment
+		l_orderkey,
+		sum(l_extendedprice * (1 - l_discount)),
+		o_orderdate,
+		o_shippriority,
+		l_shipdate,
+		c_mktsegment
 	from
 		customer,
 		orders,
@@ -21,9 +29,3 @@ create table mv_q03
 		o_orderdate,
 		o_shippriority,
 		l_shipdate
-	order by
-		mv_mktsegment,
-		mv_orderdate,
-		mv_shipdate;
-
-alter table mv_q03 add primary key (mv_orderkey, mv_mktsegment, mv_orderdate, mv_shipdate);

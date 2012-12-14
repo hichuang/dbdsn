@@ -1,6 +1,6 @@
 -- QUERY 19
 select
-	sum(mv_revnue) as revenue
+	sum(mv_revenue) as revenue
 from
 	mv_q19
 where

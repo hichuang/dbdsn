@@ -4,22 +4,14 @@ select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total 
 
 -- QUERY 3
 drop table if exists mv_q03;
-create table mv_q03 ( mv_orderkey INTEGER NOT NULL,
-					  mv_revenue DECIMAL(15,4) NOT NULL,
-					  mv_orderdate DATE NOT NULL,
-					  mv_shipdate DATE NOT NULL,
-					  mv_shippriority INTEGER NOT NULL,
-					  mv_mktsegment CHAR(10) NOT NULL,
-					  primary key (mv_orderkey, mv_mktsegment, mv_orderdate, mv_shipdate) );
-
-insert into mv_q03 (mv_orderkey, mv_revenue, mv_orderdate, mv_shippriority, mv_shipdate, mv_mktsegment)	
+create table mv_q03
 	select
-		l_orderkey,
-		sum(l_extendedprice * (1 - l_discount)),
-		o_orderdate,
-		o_shippriority,
-		l_shipdate,
-		c_mktsegment
+		l_orderkey as mv_orderkey,
+		sum(l_extendedprice * (1 - l_discount)) as mv_revenue,
+		o_orderdate as mv_orderdate,
+		o_shippriority as mv_shippriority,
+		l_shipdate as mv_shipdate,
+		c_mktsegment as mv_mktsegment
 	from
 		customer,
 		orders,
@@ -32,27 +24,29 @@ insert into mv_q03 (mv_orderkey, mv_revenue, mv_orderdate, mv_shippriority, mv_s
 		l_orderkey,
 		o_orderdate,
 		o_shippriority,
-		l_shipdate;
+		l_shipdate
+	order by
+		mv_mktsegment,
+		mv_orderkey,
+		mv_orderdate,
+		mv_shipdate;
+
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
+
+alter table mv_q03 add primary key (mv_mktsegment, mv_orderkey, mv_orderdate, mv_shipdate);
 
 select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
 
 -- QUERY 8
 drop table if exists mv_q08;
-create table mv_q08 ( mv_o_year INTEGER NOT NULL,
-					  mv_nation CHAR(25) NOT NULL,
-					  mv_rname CHAR(25) NOT NULL,
-					  mv_orderdate DATE NOT NULL,
-					  mv_type VARCHAR(25) NOT NULL,
-					  mv_volumn DECIMAL(15,4) NOT NULL ); 
-
-insert into mv_q08 (mv_o_year, mv_nation, mv_rname, mv_orderdate, mv_type, mv_volumn)
+create table mv_q08
 	select 
-		extract(year from o_orderdate) as o_year,
-		n2.n_name as nation,
-		r_name,
-		o_orderdate,
-		p_type,
-		sum(l_extendedprice * (1 - l_discount))
+		extract(year from o_orderdate) as mv_o_year,
+		n2.n_name as mv_nation,
+		r_name as mv_rname,
+		o_orderdate as mv_orderdate,
+		p_type as mv_type,
+		sum(l_extendedprice * (1 - l_discount)) as mv_volumn
 	from 
 		part,
 		supplier,
@@ -71,34 +65,32 @@ insert into mv_q08 (mv_o_year, mv_nation, mv_rname, mv_orderdate, mv_type, mv_vo
 		and n1.n_regionkey = r_regionkey
 		and s_nationkey = n2.n_nationkey
 	group by
-		o_year,
-		nation,
 		r_name,
 		o_orderdate,
-		p_type;
+		p_type,
+		nation,
+		o_year;
+
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
+
+alter table mv_q08 add primary key (mv_name, mv_orderdate, mv_type, mv_nation);
+alter table mv_q08 modify mv_o_year integer;
+alter table mv_q08 modify mv_nation varchar(25);
+alter table mv_q08 modify mv_volume decimal(10, 4);
 
 select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
 
 -- QUERY 19
 drop table if exists mv_q19;
-create table mv_q19 ( mv_brand CHAR(10) NOT NULL,
-					  mv_container CHAR(10) NOT NULL,
-					  mv_size INTEGER NOT NULL,
-					  mv_qty DECIMAL(15,2) NOT NULL,
-					  mv_shipmode CHAR(10) NOT NULL,
-					  mv_shipinstruct CHAR(25) NOT NULL,
-					  mv_revenue DECIMAL(15,4) NOT NULL,
-					  primary key(mv_brand, mv_size, mv_size, mv_qty, mv_shipmode, mv_shipinstruct) );
-
-insert into mv_q19 (mv_brand, mv_container, mv_size, mv_qty, mv_shipmode, mv_shipinstruct, mv_revenue)
+create table mv_q19
 	select
-		p_brand,
-		p_container,
-		p_size,
-		l_quantity,
-		l_shipmode,
-		l_shipinstruct,
-		sum(l_extendedprice * (1 - l_discount))
+		p_brand as mv_brand,
+		p_container as mv_container,
+		p_size as mv_size,
+		l_quantity as mv_qty,
+		l_shipmode as mv_shipmode,
+		l_shipinstruct as mv_shipinstruct,
+		sum(l_extendedprice * (1 - l_discount)) as mv_revenue
 	from
 		lineitem,
 		part
@@ -110,6 +102,18 @@ insert into mv_q19 (mv_brand, mv_container, mv_size, mv_qty, mv_shipmode, mv_shi
 		p_size,
 		l_quantity,
 		l_shipmode, 
-		l_shipinstruct;
+		l_shipinstruct
+	order by
+		mv_brand,
+		mv_container,
+		mv_size,
+		mv_qty,
+		mv_shipmode,
+		mv_shipinstruct;
+
+select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;
+
+alter table mv_q19 add primary key (mv_brand, mv_container, mv_size, mv_qty, mv_shipmode, mv_shipinstruct);
+alter table mv_19 modify mv_revenue decimal(10, 4);
 
 select table_schema "DB name", sum(data_length + index_length)/1024/1024 "Total Size in MB" from information_schema.TABLES where table_schema = "tpch" group by table_schema;

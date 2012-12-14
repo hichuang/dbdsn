@@ -1,14 +1,4 @@
 -- QUERY 19
-drop table if exists mv_q19;
-create table mv_q19 ( mv_brand CHAR(10) NOT NULL,
-					  mv_container CHAR(10) NOT NULL,
-					  mv_size INTEGER NOT NULL,
-					  mv_qty DECIMAL(15,2) NOT NULL,
-					  mv_shipmode CHAR(10) NOT NULL,
-					  mv_shipinstruct CHAR(25) NOT NULL,
-					  mv_revenue DECIMAL(15,4) NOT NULL,
-					  primary key(mv_brand, mv_size, mv_qty, mv_shipmode, mv_shipinstruct) );
-
 create table mv_q19
 	select
 		p_brand as mv_brand,

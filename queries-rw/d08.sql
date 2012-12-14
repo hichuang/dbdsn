@@ -7,7 +7,7 @@ create table mv_q08
 		r_name as mv_rname,
 		o_orderdate as mv_orderdate,
 		p_type as mv_type,
-		sum(l_extendedprice * (1 - l_discount)) as mv_volumn
+		sum(l_extendedprice * (1 - l_discount)) as mv_volume
 	from 
 		part,
 		supplier,
@@ -29,8 +29,13 @@ create table mv_q08
 		r_name,
 		o_orderdate,
 		p_type,
-		nation,
-		o_year;
+		mv_nation,
+		mv_o_year
+	order by
+		mv_rname,
+		mv_orderdate,
+		mv_type,
+		mv_nation;
 
 alter table mv_q08 add primary key (mv_name, mv_orderdate, mv_type, mv_nation);
 alter table mv_q08 modify mv_o_year integer;
